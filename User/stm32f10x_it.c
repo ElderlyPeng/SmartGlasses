@@ -25,8 +25,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
-
-
+#include "./usart/bsp_usart.h"
+#include "./oled/OLED.h"
+#include<string.h>
 
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
@@ -140,6 +141,30 @@ void SysTick_Handler(void)
 {
 }
 
+uint16_t rx_buf[1024];
+uint16_t num = 0;
+// 串口中断服务函数
+void DEBUG_USART_IRQHandler(void)
+{
+  uint8_t ucTemp;
+	if(USART_GetITStatus(DEBUG_USARTx,USART_IT_RXNE)!=RESET)
+	{		
+		rx_buf[num] = USART_ReceiveData(DEBUG_USARTx);
+		
+		// 当接收到的值等于'\n'时，把语句显示出来
+		if( rx_buf[num] == '\n' )
+		{
+			OLED_ShowStr(0, 0, (char*)rx_buf);
+			memset(rx_buf,'\0',sizeof(rx_buf));
+			num = 0;
+		}	
+		// 当值不等时候，则继续接收下一个
+		else
+		{
+			num ++;
+		}  
+	}	 
+}
 /******************************************************************************/
 /*                 STM32F10x Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

@@ -576,6 +576,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\User\oled\delay.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\usart\bsp_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

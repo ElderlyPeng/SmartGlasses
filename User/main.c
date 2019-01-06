@@ -3,20 +3,18 @@
 #include "./oled/OLED.h"
 #include "./font/fonts.h"
 #include "./flash/bsp_spi_flash.h"
+#include "./usart/bsp_usart.h"
 
 int main(void)
-{	
-	uint16_t usCh;
-	char * pStr;
-	
+{		
 	//OLED 初始化
 	DelayInit();
 	I2C_Configuration();
 	OLED_Init();
 	OLED_CLS();
+	//usart1初始化
+	USART_Config();
 	
-	
-	OLED_ShowStr(0, 0, "What does the fox say?");
 	while ( 1 );
 }
 
