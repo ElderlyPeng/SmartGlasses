@@ -15,8 +15,8 @@ int main(void)
 	OLED_Init();
 	OLED_CLS();
 	
-	OLED_ShowStr(8, 0, "两脚一离地了病毒就关闭了啥都上不去了");
-	OLED_DispChar_EN(0, 0, 'm');
+	
+	OLED_ShowStr(0, 0, "What does the fox say?");
 	while ( 1 );
 }
 

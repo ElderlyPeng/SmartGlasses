@@ -146,7 +146,14 @@ void OLED_ShowStr(unsigned char x, unsigned char y, char * pStr)
     {
 		if ( * pStr <= 126 )	           	//英文字符
 		{
-			
+			if ( x+WIDTH_EN_CHAR >= 128 )
+			{
+				x = 0;
+				y += 1;
+			}
+			OLED_DispChar_EN(x, y, *pStr);
+			x += WIDTH_EN_CHAR;
+			pStr += 1;
 		}
 		else	                            //汉字字符
 		{
@@ -208,7 +215,6 @@ void OLED_DispChar_EN( uint16_t usX, uint16_t usY, const char cChar )
     fontLength = (Font8x16.Width*Font8x16.Height)/8;
 
     //字模首地址
-    //ascii码表偏移值乘以每个字模的字节数，求出字模的偏移位置
     Pfont = (uint8_t *)&Font8x16.table[ucRelativePositon * fontLength];
 
     //一页一页显示数据
@@ -220,7 +226,7 @@ void OLED_DispChar_EN( uint16_t usX, uint16_t usY, const char cChar )
 		{
 			for ( i=0; i<8; i++ )
 			{
-				usTemp |= ( ( (Pfont[8*rowCount+i]) >> (7 - bitCount%8) )&0x01 ) << i ;
+				usTemp |= ( ( (Pfont[8*rowCount+i]) >> (7 - bitCount) )&0x01 ) << i ;
 			}
 			WriteDat(usTemp);
 			usTemp = 0;
