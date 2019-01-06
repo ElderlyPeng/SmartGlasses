@@ -43,9 +43,9 @@
 
 //CS(NSS)引脚 片选选普通GPIO即可
 #define      FLASH_SPI_CS_APBxClock_FUN       RCC_APB2PeriphClockCmd
-#define      FLASH_SPI_CS_CLK                  RCC_APB2Periph_GPIOC    
-#define      FLASH_SPI_CS_PORT                 GPIOC
-#define      FLASH_SPI_CS_PIN                  GPIO_Pin_0
+#define      FLASH_SPI_CS_CLK                  RCC_APB2Periph_GPIOA    
+#define      FLASH_SPI_CS_PORT                 GPIOA
+#define      FLASH_SPI_CS_PIN                  GPIO_Pin_4
 
 //SCK引脚
 #define      FLASH_SPI_SCK_APBxClock_FUN      RCC_APB2PeriphClockCmd
@@ -56,12 +56,12 @@
 #define      FLASH_SPI_MISO_APBxClock_FUN     RCC_APB2PeriphClockCmd
 #define      FLASH_SPI_MISO_CLK                RCC_APB2Periph_GPIOA    
 #define      FLASH_SPI_MISO_PORT               GPIOA 
-#define      FLASH_SPI_MISO_PIN                GPIO_Pin_6
+#define      FLASH_SPI_MISO_PIN                GPIO_Pin_7
 //MOSI引脚
 #define      FLASH_SPI_MOSI_APBxClock_FUN     RCC_APB2PeriphClockCmd
 #define      FLASH_SPI_MOSI_CLK                RCC_APB2Periph_GPIOA    
 #define      FLASH_SPI_MOSI_PORT               GPIOA 
-#define      FLASH_SPI_MOSI_PIN                GPIO_Pin_7
+#define      FLASH_SPI_MOSI_PIN                GPIO_Pin_6
 
 #define  		SPI_FLASH_CS_LOW()     						GPIO_ResetBits( FLASH_SPI_CS_PORT, FLASH_SPI_CS_PIN )
 #define  		SPI_FLASH_CS_HIGH()    						GPIO_SetBits( FLASH_SPI_CS_PORT, FLASH_SPI_CS_PIN )
@@ -83,10 +83,10 @@
                                           }while(0)
 
 void SPI_FLASH_Init(void);
-void SPI_FLASH_SectorErase(u32 SectorAddr);
-void SPI_FLASH_BulkErase(void);
-void SPI_FLASH_PageWrite(u8* pBuffer, u32 WriteAddr, u16 NumByteToWrite);
-void SPI_FLASH_BufferWrite(u8* pBuffer, u32 WriteAddr, u16 NumByteToWrite);
+//void SPI_FLASH_SectorErase(u32 SectorAddr);
+//void SPI_FLASH_BulkErase(void);
+//void SPI_FLASH_PageWrite(u8* pBuffer, u32 WriteAddr, u16 NumByteToWrite);
+//void SPI_FLASH_BufferWrite(u8* pBuffer, u32 WriteAddr, u16 NumByteToWrite);
 void SPI_FLASH_BufferRead(u8* pBuffer, u32 ReadAddr, u16 NumByteToRead);
 u32 SPI_FLASH_ReadID(void);
 u32 SPI_FLASH_ReadDeviceID(void);
