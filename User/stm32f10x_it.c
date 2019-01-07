@@ -154,6 +154,7 @@ void DEBUG_USART_IRQHandler(void)
 		// 当接收到的值等于'\n'时，把语句显示出来
 		if( rx_buf[num] == '\n' )
 		{
+			OLED_CLS();
 			OLED_ShowStr(0, 0, (char*)rx_buf);
 			memset(rx_buf,'\0',sizeof(rx_buf));
 			num = 0;
