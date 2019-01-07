@@ -144,9 +144,9 @@ void OLED_ShowStr(unsigned char x, unsigned char y, char * pStr)
 
     while ( * pStr != '\0' )
     {
-		if ( * pStr <= 126 )	           	//Ó¢ÎÄ×Ö·û
+		if ( * pStr <= 126 && * pStr >= 32 )	           	//Ó¢ÎÄ×Ö·û
 		{
-			if ( x+WIDTH_EN_CHAR >= 128 )
+			if ( x+WIDTH_EN_CHAR > 128 )
 			{
 				x = 0;
 				y += 1;
@@ -155,9 +155,9 @@ void OLED_ShowStr(unsigned char x, unsigned char y, char * pStr)
 			x += WIDTH_EN_CHAR;
 			pStr += 1;
 		}
-		else	                            //ºº×Ö×Ö·û
+		else if (* pStr >= 126)	                            //ºº×Ö×Ö·û
 		{
-			if ( x+WIDTH_CH_CHAR >= 128 )
+			if ( x+WIDTH_CH_CHAR > 128 )
 			{
 				x = 0;
 				y += 1;
@@ -168,6 +168,10 @@ void OLED_ShowStr(unsigned char x, unsigned char y, char * pStr)
 			OLED_DispChar_CH(x, y, usCh);
 			x += WIDTH_CH_CHAR;
 			pStr += 2;
+		}
+		else												//ÌØÊâ×Ö·û
+		{
+			pStr += 1;
 		}
     }
 }

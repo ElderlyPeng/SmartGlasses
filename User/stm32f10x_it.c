@@ -141,12 +141,11 @@ void SysTick_Handler(void)
 {
 }
 
-uint16_t rx_buf[1024];
+char rx_buf[256];
 uint16_t num = 0;
 // 串口中断服务函数
 void DEBUG_USART_IRQHandler(void)
 {
-  uint8_t ucTemp;
 	if(USART_GetITStatus(DEBUG_USARTx,USART_IT_RXNE)!=RESET)
 	{		
 		rx_buf[num] = USART_ReceiveData(DEBUG_USARTx);
@@ -155,7 +154,7 @@ void DEBUG_USART_IRQHandler(void)
 		if( rx_buf[num] == '\n' )
 		{
 			OLED_CLS();
-			OLED_ShowStr(0, 0, (char*)rx_buf);
+			OLED_ShowStr(0, 0, rx_buf);
 			memset(rx_buf,'\0',sizeof(rx_buf));
 			num = 0;
 		}	
