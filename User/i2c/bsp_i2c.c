@@ -11,7 +11,7 @@
 *	形    参：无
 *	返 回 值: 无
 */
-static void i2c_Delay(void)
+inline static void i2c_Delay(void)
 {
 	uint8_t i;
 
@@ -22,7 +22,7 @@ static void i2c_Delay(void)
 		循环次数为7时，SCL频率 = 347KHz， SCL高电平时间1.5us，SCL低电平时间2.87us 
 	 	循环次数为5时，SCL频率 = 421KHz， SCL高电平时间1.25us，SCL低电平时间2.375us 
 	*/
-	for (i = 0; i < 10; i++);
+	//for (i = 0; i < 10; i++);
 }
 
 /*

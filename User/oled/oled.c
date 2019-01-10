@@ -169,7 +169,7 @@ void OLED_ShowStr(unsigned char x, unsigned char y, char * pStr)
 			x += WIDTH_CH_CHAR;
 			pStr += 2;
 		}
-		else												//特殊字符
+		else												//ASCII码小于32的特殊字符
 		{
 			pStr += 1;
 		}
